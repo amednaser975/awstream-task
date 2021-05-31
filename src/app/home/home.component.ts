@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Job } from '../_models/job';
 import { JobsService } from '../_services/jobs.service';
 
-declare var $:any;
+declare var $: any;
 
 @Component({
   selector: 'app-home',
@@ -29,9 +29,9 @@ export class HomeComponent implements OnInit {
     this.temporaryJobs = this._JobsService.getByCategory('Temporary');
 
   }
-  switchSearchTabs(value:string) {
-    var element = '#'+value;
-    if(value == 'job') {
+  switchSearchTabs(value: string) {
+    var element = '#' + value;
+    if (value == 'job') {
       $('#resumeBtn').css({
         "backgroundColor": 'white',
         "color": "black"
@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
       $('#resume').addClass('d-none');
       $(element).removeClass('d-none');
     }
-    else if  (value == 'resume') {
+    else if (value == 'resume') {
       $('#jobBtn').css({
         "backgroundColor": 'white',
         "color": "black"
@@ -65,4 +65,6 @@ export class HomeComponent implements OnInit {
     $('.nav-item').removeClass('active');
     $(activeTabId).addClass('active');
   }
+
+
 }
