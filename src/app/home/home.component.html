@@ -1,0 +1,543 @@
+<!-- Start Header -->
+<header class="container-fluid g-0">
+    <section>
+
+        <div class="row">
+            <div class="col-12">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.757107326167!2d31.326594315069457!3d30.043825481882493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583ef2dca33d73%3A0x98c20fd99298e246!2sAbou%20Ramy%20nasr%20city!5e0!3m2!1sen!2seg!4v1622175187450!5m2!1sen!2seg"
+                    height="450" style="width:100%;border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+    <section class="container" id="searchSection">
+        <div class="row">
+            <div class="col-12">
+                <ul class="nav nav-tabs border-0">
+                    <li>
+                        <button (click)="switchSearchTabs('job')" id="jobBtn" class=" btn fw-bold  btn-dark rounded-0 ">Find Job</button>
+                    </li>
+                    <li>
+                        <button (click)="switchSearchTabs('resume')" id="resumeBtn" class="btn fw-bold btn-light rounded-0 ">Find Resume</button>
+                    </li>
+                </ul>
+                <form id="job" class="row border shadow bg-body g-0 rounded " action=" ">
+
+                    <div class="form-group col-3 border border-1 p-3 ">
+                        <label for="jobInp " class="fw-bold mb-1 ">JOB</label>
+                        <input type="text " class="form-control " name="job " id="jobInp " aria-describedby="helpId " placeholder="Job title, keywords ">
+                    </div>
+                    <div class="form-group col-3 border border-1 p-3 ">
+                        <label for="locationInp " class="fw-bold mb-1 ">LOCATION</label>
+                        <input type="text " class="form-control " name="location " id="locationInp " aria-describedby="helpId " placeholder="City, province or region ">
+                    </div>
+                    <div class="form-group col-3 border border-1 p-3 ">
+                        <label for="categoryInp " class="fw-bold mb-1 ">CATEGORY</label>
+                        <select class="form-select " name="category " id="categoryInp ">
+                                <option selected>Select Industry</option>
+                            </select>
+                    </div>
+                    <div class="form-group col-3 border border-1 p-3 border-end-0 d-flex align-items-center ">
+                        <button type="submit " class="btn btn-lg btn-dark w-100 fs-5 ">
+                                <i class="fa fa-search " aria-hidden="true "></i>
+                                Search
+                            </button>
+                    </div>
+                </form>
+                <form id="resume" class="row border shadow bg-body g-0 rounded d-none" action=" ">
+                    <div class="form-group col-3 border border-1 p-3 ">
+                        <label for="resumeInp " class="fw-bold mb-1 ">Resume</label>
+                        <input type="text " class="form-control " name="resume" id="resumeInp " aria-describedby="helpId " placeholder="Resume title, keywords ">
+                    </div>
+                    <div class="form-group col-3 border border-1 p-3 ">
+                        <label for="locationInp " class="fw-bold mb-1 ">LOCATION</label>
+                        <input type="text " class="form-control " name="location " id="locationInp " aria-describedby="helpId " placeholder="City, province or region ">
+                    </div>
+
+                    <div class="form-group col-3 border border-1 p-3 ">
+                        <label for="categoryInp" class="fw-bold mb-1 ">CATEGORY</label>
+                        <select class="form-select" name="category" id="categoryInp">
+                                <option selected>Select Industry</option>
+                            </select>
+                    </div>
+                    <div class="form-group col-3 border border-1 p-3 border-end-0 d-flex align-items-center ">
+                        <button type="submit " class="btn btn-lg btn-dark w-100 fs-5 ">
+                                <i class="fa fa-search " aria-hidden="true "></i>
+                                Search
+                            </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</header>
+<!-- End Header -->
+<!-- Start Body Content -->
+<section class="container-md " id="bodyContent ">
+    <div class="row ">
+        <div class="col-md-8 mb-sm-2 ">
+            <div class="row ">
+                <div class="col-8 ">
+                    <p>We have 1245 Potential jobs for you</p>
+                </div>
+                <div class="col-4 text-end ">
+                    <p>
+                        Sort by: Newest RSS
+                    </p>
+                </div>
+                <div class="col-12 border border-1 px-0 pb-2 ">
+                    <ul class="tabs list-unstyled p-3 pb-0 border border-bottom-1 ">
+                        <li class="nav-item active d-inline-block" id="allJobsTab">
+                            <a class="nav-link " (click)="changeListingTab( 'allJobs', $event) " aria-current="page " href="# ">All Jobs</a>
+                        </li>
+                        <li class="nav-item d-inline-block " id="temporaryTab">
+                            <a class="nav-link " (click)="changeListingTab( 'temporary', $event) " href="# ">Temporary</a>
+                        </li>
+                        <li class="nav-item d-inline-block " id="fullTimeTab">
+                            <a class="nav-link " (click)="changeListingTab( 'fullTime', $event) " href="# ">Full Time</a>
+                        </li>
+                        <li class="nav-item d-inline-block " id="partTimeTab">
+                            <a class="nav-link " (click)="changeListingTab( 'partTime', $event) " href="# ">Part Time</a>
+                        </li>
+                        <li class="nav-item d-inline-block " id="freelanceTab">
+                            <a class="nav-link " (click)="changeListingTab( 'freelance', $event) " href="# ">Freelance</a>
+                        </li>
+                    </ul>
+                    <div class="row px-3 ">
+                        <div id="allJobs" class="listing col-12 ">
+                            <div *ngFor="let job of allJobs" class="job py-3 ps-2 row border-bottom-1 align-items-center ">
+                                <div class="col-5 row align-items-center px-0 ">
+                                    <div class="col-4 image pe-0 ">
+                                        <img [src]="job.companyImg" class="h-100 w-100 " alt="cocacola ">
+                                    </div>
+                                    <div class="col-8 details h-100 ">
+                                        <h5>{{job.title}}</h5>
+                                        <p class="mb-0 text-muted ">
+                                            <span class="text-primary ">{{job.company}}</span> |
+                                            <span>Open Happiness</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="location col-2 px-0 ">
+                                    <i class="fas fa-map-marker-alt "></i>
+                                    <span class="text-center ">{{job.address}}</span>
+                                </div>
+                                <div class="col-2 px-0 text-center ">
+                                    <i class="far fa-clock "></i> {{job.time}}hours ago
+                                </div>
+                                <div class="col-3 d-flex justify-content-between pe-0 ">
+                                    <span class="text-white p-1 " [ngClass]="{'bg-warning': job.category == 'Freelance', 
+                                    'bg-primary': job.category == 'Full Time',
+                                    'bg-success': job.category == 'Internship',
+                                    'bg-info': job.category == 'Part Time'}">{{job.category}}</span>
+                                    <i class="fa fa-ellipsis-h fs-4 " aria-hidden="true "></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="temporary" class="listing col-12 d-none ">
+                            <div *ngFor="let job of temporaryJobs" class="job py-3 ps-2 row border-bottom-1 align-items-center ">
+                                <div class="col-5 row align-items-center px-0 ">
+                                    <div class="col-4 image pe-0 ">
+                                        <img [src]="job.companyImg" class="h-100 w-100 " alt="cocacola ">
+                                    </div>
+                                    <div class="col-8 details h-100 ">
+                                        <h5>{{job.title}}</h5>
+                                        <p class="mb-0 text-muted ">
+                                            <span class="text-primary ">{{job.comapny}}</span> |
+                                            <span>Open Happiness</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="location col-2 px-0 ">
+                                    <i class="fas fa-map-marker-alt "></i>
+                                    <span class="text-center ">{{job.address}}</span>
+                                </div>
+                                <div class="col-2 px-0 text-center ">
+                                    <i class="far fa-clock "></i> {{job.time}}hours ago
+                                </div>
+                                <div class="col-3 d-flex justify-content-between pe-0 ">
+                                    <span class="text-white p-1 " [ngClass]="{'bg-warning': job.category == 'Freelance', 
+                                    'bg-primary': job.category == 'Full Time',
+                                    'bg-success': job.category == 'Internship',
+                                    'bg-info': job.category == 'Part Time'}">{{job.category}}</span>
+                                    <i class="fa fa-ellipsis-h fs-4 " aria-hidden="true "></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="fullTime" class="listing col-12 d-none ">
+                            <div *ngFor="let job of fullTimeJobs" class="job py-3 ps-2 row border-bottom-1 align-items-center ">
+                                <div class="col-5 row align-items-center px-0 ">
+                                    <div class="col-4 image pe-0 ">
+                                        <img [src]="job.companyImg" class="h-100 w-100 " alt="cocacola ">
+                                    </div>
+                                    <div class="col-8 details h-100 ">
+                                        <h5>{{job.title}}</h5>
+                                        <p class="mb-0 text-muted ">
+                                            <span class="text-primary ">{{job.company}}</span> |
+                                            <span>Open Happiness</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="location col-2 px-0 ">
+                                    <i class="fas fa-map-marker-alt "></i>
+                                    <span class="text-center ">{{job.address}}</span>
+                                </div>
+                                <div class="col-2 px-0 text-center ">
+                                    <i class="far fa-clock "></i> {{job.time}}hours ago
+                                </div>
+                                <div class="col-3 d-flex justify-content-between pe-0 ">
+                                    <span class="text-white p-1 " [ngClass]="{'bg-warning': job.category == 'Freelance', 
+                                    'bg-primary': job.category == 'Full Time',
+                                    'bg-success': job.category == 'Internship',
+                                    'bg-info': job.category == 'Part Time'}">{{job.category}}</span>
+                                    <i class="fa fa-ellipsis-h fs-4 " aria-hidden="true "></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="partTime" class="listing col-12 d-none ">
+                            <div *ngFor="let job of partTimeJobs" class="job py-3 ps-2 row border-bottom-1 align-items-center ">
+                                <div class="col-5 row align-items-center px-0 ">
+                                    <div class="col-4 image pe-0 ">
+                                        <img [src]="job.companyImg" class="h-100 w-100 " alt="cocacola ">
+                                    </div>
+                                    <div class="col-8 details h-100 ">
+                                        <h5>{{job.title}}</h5>
+                                        <p class="mb-0 text-muted ">
+                                            <span class="text-primary ">{{job.company}}</span> |
+                                            <span>Open Happiness</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="location col-2 px-0 ">
+                                    <i class="fas fa-map-marker-alt "></i>
+                                    <span class="text-center ">{{job.address}}</span>
+                                </div>
+                                <div class="col-2 px-0 text-center ">
+                                    <i class="far fa-clock "></i> {{job.time}}hours ago
+                                </div>
+                                <div class="col-3 d-flex justify-content-between pe-0 ">
+                                    <span class="text-white p-1 " [ngClass]="{'bg-warning': job.category == 'Freelance', 
+                                    'bg-primary': job.category == 'Full Time',
+                                    'bg-success': job.category == 'Internship',
+                                    'bg-info': job.category == 'Part Time'}">{{job.category}}</span>
+                                    <i class="fa fa-ellipsis-h fs-4 " aria-hidden="true "></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="freelance" class="listing col-12 d-none ">
+                            <div *ngFor="let job of freelanceJobs" class="job py-3 ps-2 row border-bottom-1 align-items-center ">
+                                <div class="col-5 row align-items-center px-0 ">
+                                    <div class="col-4 image pe-0 ">
+                                        <img [src]="job.companyImg" class="h-100 w-100 " alt="cocacola ">
+                                    </div>
+                                    <div class="col-8 details h-100 ">
+                                        <h5>{{job.title}}</h5>
+                                        <p class="mb-0 text-muted ">
+                                            <span class="text-primary ">{{job.comapny}}</span> |
+                                            <span>Open Happiness</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="location col-2 px-0 ">
+                                    <i class="fas fa-map-marker-alt "></i>
+                                    <span class="text-center ">{{job.address}}</span>
+                                </div>
+                                <div class="col-2 px-0 text-center ">
+                                    <i class="far fa-clock "></i> {{job.time}}hours ago
+                                </div>
+                                <div class="col-3 d-flex justify-content-between pe-0 ">
+                                    <span class="bg-primary text-white p-1 ">{{job.category}}</span>
+                                    <i class="fa fa-ellipsis-h fs-4 " aria-hidden="true "></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 ">
+                            <button type="button " id="loadBtn " class="btn btn-light mt-3 w-100 fw-bold py-2 ">LOAD
+                                MORE LISTING</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-none d-md-block ">
+            <div class="row ">
+                <div class="col-12 ">
+                    <div class="row g-0 border border-1 align-items-center ">
+                        <div class="col-2 border-end p-3 border-end-1 text-center ">
+                            <i class="fa fa-search " aria-hidden="true "></i>
+                        </div>
+                        <div class="col-10 p-1 ">
+                            <p class="mb-0 fw-bold ">Start Searching</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form class="row border shadow bg-body g-0 " action=" ">
+                <div class="form-group col-12 p-3 ">
+                    <label for="jobInp " class="fw-bold mb-1 ">JOB</label>
+                    <input type="text " class="form-control " name="job " id="jobInp " aria-describedby="helpId " placeholder="Job title, keywords ">
+                </div>
+                <div class="form-group col-12 p-3 ">
+                    <label for="locationInp " class="fw-bold mb-1 ">LOCATION</label>
+                    <input type="text " class="form-control " name="location " id="locationInp " aria-describedby="helpId " placeholder="City, province or region ">
+                </div>
+                <div class="form-group col-12 p-3 ">
+                    <label for="categoryInp " class="fw-bold mb-1 ">CATEGORY</label>
+                    <select class="form-select " name="category " id="categoryInp ">
+                        <option selected>Select Industry</option>
+                    </select>
+                </div>
+                <div class="px-3 pt-3 mt-3 border-bottom border-bottom-1 border-top border-top-1 col-12 d-flex justify-content-between ">
+                    <p class="mb-0 fw-bold ">Contract Type</p>
+                    <p><i class="fas fa-chevron-right "></i></p>
+                </div>
+                <div class="px-3 pt-3 col-12 d-flex justify-content-between ">
+                    <p class="mb-0 fw-bold ">Specialisms</p>
+                    <p><i class="fas fa-chevron-right "></i></p>
+                </div>
+                <div class="form-group col-12 border-top border-top-1 p-3 border-end-0 d-flex align-items-center ">
+                    <button type="submit " class="btn btn-lg btn-dark w-100 fs-6 ">
+                        <i class="fa fa-search " aria-hidden="true "></i>
+                        Search
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8 mt-3 ">
+            <div class="row ">
+                <div class="col-md-4 col-6 border border-1 px-3 py-3 d-flex align-items-center ">
+                    <div class="me-3 fs-5 ">
+                        <i class="fas fa-school text-primary "></i>
+                    </div>
+                    <div>
+                        <h5 class="fs-6 fw-bold mb-0 ">Construction & Build</h5>
+                        <span class="text-muted fs-8 ">7 Open Positions</span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-6 border border-1 px-3 py-3 d-flex align-items-center ">
+                    <div class="me-3 fs-5 text-primary ">
+                        <i class="fas fa-book-open "></i>
+                    </div>
+                    <div>
+                        <h5 class="fs-6 fw-bold mb-0 ">Education & Training</h5>
+                        <span class="text-muted fs-8 ">7 Open Positions</span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-6 border border-1 px-3 py-3 d-flex align-items-center ">
+                    <div class="me-3 fs-5 ">
+                        <i class="fas fa-signal text-primary "></i>
+                    </div>
+                    <div>
+                        <h5 class="fs-6 fw-bold mb-0 ">Accounting</h5>
+                        <span class="text-muted fs-8 ">7 Open Positions</span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-6 border border-1 px-3 py-3 d-flex align-items-center ">
+                    <div class="me-3 fs-5 ">
+                        <i class="far fa-heart text-primary "></i>
+                    </div>
+                    <div>
+                        <h5 class="fs-6 fw-bold mb-0 ">Healthcare & Beauty</h5>
+                        <span class="text-muted fs-8 ">3 Open Positions</span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-6 border border-1 px-3 py-3 d-flex align-items-center ">
+                    <div class="me-3 fs-5 ">
+                        <i class="fas fa-car-side text-primary "></i>
+                    </div>
+                    <div>
+                        <h5 class="fs-6 fw-bold mb-0 ">Cars & Automotive</h5>
+                        <span class="text-muted fs-8 ">2 Open Positions</span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-6 border border-1 px-3 py-3 d-flex align-items-center ">
+                    <div class="me-3 fs-5 ">
+                        <i class="fas fa-laptop text-primary "></i>
+                    </div>
+                    <div>
+                        <h5 class="fs-6 fw-bold mb-0 ">Web Development</h5>
+                        <span class="text-muted fs-8 ">8 Open Positions</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 " id="news ">
+                <div class="col-md-6 col-12 g-md-0 mb-3 ">
+                    <div class="me-1 bg-dark text-white ">
+                        <div class="row g-0 border border-1 align-items-center ">
+                            <div class="col-2 border-end p-3 border-end-1 text-center ">
+                                <i class="fas fa-paper-plane "></i>
+                            </div>
+                            <div class="col-10 p-1 ">
+                                <p class="mb-0 fw-bold ">Subscribe Our News</p>
+                            </div>
+                        </div>
+                        <div class="p-3 ">
+                            <p class="mb-4 ">Subscribe to our newsletter to get the latest jobs posted, candidates, and latest news.
+                            </p>
+                            <div class="form-group ">
+                                <label for="emailInp "></label>
+                                <input type="email " class="form-control bg-dark text-white border-white empty mb-3 " name="emailInp " id="emailInp " aria-describedby="helpId " placeholder="&#61442; Enter Your Email ">
+                                <button type="button " class="btn btn-primary w-100 ">SUBSCRIBE</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12 g-md-0 ">
+                    <div class="ms-1 bg-info text-white ">
+                        <div class="row g-0 border border-1 align-items-center ">
+                            <div class="col-2 border-end p-3 border-end-1 text-center ">
+                                <i class="fab fa-twitter "></i>
+                            </div>
+                            <div class="col-10 p-1 ">
+                                <p class="mb-0 fw-bold ">Latest Tweets</p>
+                            </div>
+                        </div>
+                        <div class="p-3 pt-4 ">
+                            <p class="bg-dark w-25 mt-1 ">@tielabs</p>
+                            <p>We have realsed a major update for InstaNow plugin (formerly Instagramy) v2.0 http://tie.li.insta-now
+                            </p>
+                            <p class="mb-5 ">
+                                <i class="far fa-clock "></i> 8 hours ago
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mt-3 ">
+            <h3 class="fw-bold fs-5 ">Featured Jobs</h3>
+            <div class="border border-1 p-2 ">
+                <div class="image ">
+                    <img src="./assets/images/work.jpg" class="img-fluid w-100 " alt=" ">
+                </div>
+                <div class="row border-bottom border-bottom-1 mt-3 mb-2 ">
+                    <div class="col-3 ">
+                        <i class="fab fa-black-tie "></i>
+                    </div>
+                    <div class="col-9 ">
+                        <h5>Front-End Developer</h5>
+                        <div class="fs-8 fw-bold text-muted ">
+                            <span class="text-primary ">Tielabs</span> |
+                            <span>Beautiful WP Themes</span>
+                        </div>
+                        <p class="fs-8 text-muted mt-1 ">
+                            We're looking for a talented, Egypt-based Front-End Developer for an immediate mobile website project (plus various other projects in the future).
+                        </p>
+                        <div class="d-flex fs-8 mb-3 ">
+                            <div class="me-2 ">
+                                <i class="fas fa-map-marker-alt "></i>
+                                <span class="text-center "> Moscow, Russia</span>
+                            </div>
+                            <div class="text-center ">
+                                <i class="far fa-clock "></i> 8 hours ago
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between ">
+                    <div>
+                        <i class="fas fa-chevron-left p-3 bg-light "></i>
+                        <i class="fas fa-chevron-right p-3 bg-light "></i>
+                    </div>
+                    <button type="button " class="btn btn-primary px-4 ">Apply For This Job</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Body Content -->
+<!-- Start Explore Section -->
+<section id="exploreSection ">
+    <div class="row " id="exploreSectionHeader ">
+        <div class="offset-md-4 col-md-4 col-12 ">
+            <p>FIND TOP TALENTS</p>
+            <h3>Explore Our Latest Candidates</h3>
+            <div class="line "></div>
+            <p class="mb-4 ">
+                Work with someone perfect for your team & get amazing with the best employees, hire talents with confidence!
+            </p>
+        </div>
+    </div>
+
+    <div id="exploreSectionSlider ">
+        <div id="layer "></div>
+        <div class="slider text-dark ">
+            <div class="mx-1 ">
+                <img src="./assets/images/testimonial-2.jpg " class="img-fluid m-auto mb-1 " srcset=" ">
+                <div class="text-center fs-8 ">
+                    <h4 class="mb-0 ">Ahmed Nasr</h4>
+                    <p class="text-muted ">UI Developer</p>
+                </div>
+            </div>
+            <div class="mx-1 ">
+                <img src="./assets/images/testimonial-4.jpg " class="img-fluid m-auto mb-1 " srcset=" ">
+
+                <div class="text-center fs-8 ">
+                    <h4 class="mb-0 ">Ahmed Nasr</h4>
+                    <p class="text-muted ">UI Developer</p>
+                </div>
+            </div>
+            <div class="mx-1 ">
+                <img src="./assets/images/testimonial-2.jpg " class="img-fluid m-auto mb-3 " srcset=" ">
+
+                <div class="text-center fs-8 ">
+                    <h4 class="mb-0 ">Ahmed Nasr</h4>
+                    <p class="text-muted ">UI Developer</p>
+                </div>
+            </div>
+            <div class="mx-1 ">
+                <img src="./assets/images/testimonial-2.jpg " class="img-fluid m-auto mb-1 " srcset=" ">
+
+                <div class="text-center fs-8 ">
+                    <h4 class="mb-0 ">Ahmed Nasr</h4>
+                    <p class="text-muted ">UI Developer</p>
+                </div>
+            </div>
+            <div class="mx-1 ">
+                <img src="./assets/images/testimonial-4.jpg " class="img-fluid m-auto mb-1 " srcset=" ">
+
+                <div class="text-center fs-8 ">
+                    <h4 class="mb-0 ">Ahmed Nasr</h4>
+                    <p class="text-muted ">UI Developer</p>
+                </div>
+            </div>
+            <div class="mx-1 ">
+                <img src="./assets/images/testimonial-2.jpg " class="img-fluid m-auto mb-1 " srcset=" ">
+
+                <div class="text-center fs-8 ">
+                    <h4 class="mb-0 ">Ahmed Nasr</h4>
+                    <p class="text-muted ">UI Developer</p>
+                </div>
+            </div>
+            <div class="mx-1 ">
+                <img src="./assets/images/testimonial-4.jpg " class="img-fluid m-auto mb-1 " srcset=" ">
+
+                <div class="text-center fs-8 ">
+                    <h4 class="mb-0 ">Ahmed Nasr</h4>
+                    <p class="text-muted ">UI Developer</p>
+                </div>
+            </div>
+            <div class="mx-1 ">
+                <img src="./assets/images/testimonial-4.jpg " class="img-fluid m-auto mb-1 " srcset=" ">
+
+                <div class="text-center fs-8 ">
+                    <h4 class="mb-0 ">Ahmed Nasr</h4>
+                    <p class="text-muted ">UI Developer</p>
+                </div>
+            </div>
+            <div class="mx-1 ">
+                <img src="./assets/images/testimonial-2.jpg " class="img-fluid m-auto mb-1 " srcset=" ">
+
+                <div class="fs-8 ">
+                    <h4>Ahmed Nasr</h4>
+                    <p class="text-muted ">UI Developer</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mb-3 ">
+            <button type="button " class="btn btn-dark fs-6 px-5 rounded-0 fw ">Explore All</button>
+        </div>
+    </div>
+
+</section>
+<!-- End Explore Section -->

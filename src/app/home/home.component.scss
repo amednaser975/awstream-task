@@ -1,0 +1,195 @@
+/* Start General Style */
+
+body {
+    overflow-x: hidden !important;
+    background-color: #4f52d3 !important;
+}
+
+button {
+    outline: 0;
+}
+
+.container {
+    width: 70% !important;
+}
+
+.fs-8 {
+    font-size: 0.8rem;
+}
+
+
+/* End General Style */
+
+
+/* Start Header */
+
+#searchSection {
+    position: relative;
+    top: -45px;
+}
+
+.nav-tabs .active {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-bottom-color: #fff;
+}
+
+@media(max-width:720px) {
+    #searchSection form {
+        flex-direction: column;
+    }
+    #searchSection form .form-group {
+        width: 100%;
+    }
+}
+
+
+/* End Header */
+
+
+/* Start Body Content Style */
+
+.tabs {
+    background-color: #dee2e6;
+}
+
+.nav-link {
+    font-weight: bold;
+    color: #6c757d;
+}
+
+.nav-item.active {
+    border-bottom: 1px solid #fff;
+    position: relative;
+    z-index: 33;
+    top: 2px;
+    background-color: white;
+}
+
+.fa-chevron-left:hover,
+.fa-chevron-right:hover {
+    color: #4f52d3;
+}
+
+.details h5 {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+.details span {
+    font-size: 0.6rem;
+    font-weight: bold;
+}
+
+.job {
+    font-size: 0.8rem;
+    color: #6c757d !important;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.job .image img {
+    width: 75% !important;
+    height: 75% !important;
+}
+
+@media(max-width:720px) {
+    #bodyContent p {
+        font-size: .6rem;
+    }
+    #bodyContent span {
+        font-size: .5rem;
+    }
+    #news {
+        margin-bottom: 2rem;
+    }
+    #news p {
+        font-size: 1rem;
+    }
+}
+
+
+/* End Body Content Style */
+
+
+/* Start ExploreSection Style */
+
+.fa-ellipsis-h,
+.fa-chevron-left,
+.fa-chevron-right {
+    cursor: pointer;
+}
+
+#loadBtn {
+    background-color: #dee2e6;
+}
+
+.fa-black-tie {
+    font-size: 4rem;
+    color: orangered;
+}
+
+.line {
+    width: 15%;
+    height: 3%;
+    border-radius: 1rem;
+    margin: 1rem auto;
+    background-color: black;
+}
+
+#exploreSection {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 4rem 0rem;
+    color: #fff;
+}
+
+#exploreSectionHeader {
+    background-color: #4f52d3;
+    padding: 2rem;
+}
+
+#exploreSectionSlider {
+    position: relative;
+}
+
+#layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 42%;
+    background-color: #4f52d3;
+}
+
+.slick-prev.slick-arrow::before,
+.slick-next.slick-arrow::before {
+    color: white;
+    bottom: 100%;
+    position: relative;
+}
+
+.slick-next.slick-arrow {
+    right: 0.2% !important;
+}
+
+.slick-prev.slick-arrow {
+    left: 0.5% !important;
+}
+
+.slick-list {
+    margin: 2rem;
+}
+
+.slider {
+    margin: auto;
+    width: 80%;
+    padding: 2rem;
+}
+
+.slick-prev,
+.slick-next {
+    top: 40% !important;
+}
+
+
+/* End ExploreSection Style */
